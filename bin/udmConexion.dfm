@@ -12,7 +12,6 @@ object dmConexion: TdmConexion
       'RawStringEncoding=DB_CP')
     AutoCommit = False
     TransactIsolationLevel = tiReadCommitted
-    Connected = True
     BeforeConnect = zConnectionBeforeConnect
     DisableSavepoints = False
     HostName = 'localhost'
@@ -21,7 +20,6 @@ object dmConexion: TdmConexion
     User = 'postgres'
     Password = 'isidoro'
     Protocol = 'postgresql'
-    LibraryLocation = 'C:\Program Files (x86)\psqlODBC\1800\bin\libpq.dll'
     Left = 48
     Top = 16
   end
