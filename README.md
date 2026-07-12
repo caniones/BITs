@@ -1,4 +1,4 @@
-# BITs - Bitácora de Órdenes de Trabajo 🛠️💻
+# BITs - Bitácora de Ingresos y TrabajoS 🛠️💻
 
 **BITs** es un sistema de escritorio diseñado exclusivamente para optimizar, organizar y acelerar la atención en talleres de servicio técnico de computadoras (PC y Notebooks). 
 
