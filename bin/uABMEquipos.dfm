@@ -1,0 +1,62 @@
+inherited frmABMEquipos: TfrmABMEquipos
+  Caption = 'Alta Baja y Modificaci'#243'n de Equipos'
+  OldCreateOrder = True
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Panel1: TPanel
+    inherited btnAlta: TSpeedButton
+      OnClick = btnAltaClick
+    end
+    inherited btnBaja: TSpeedButton
+      OnClick = btnBajaClick
+    end
+    inherited btnModi: TSpeedButton
+      OnClick = btnModiClick
+    end
+  end
+  inherited cxGrid: TcxGrid
+    inherited cxGridDBTableView1: TcxGridDBTableView
+      object cxGridDBTableView1id_equipo: TcxGridDBColumn
+        DataBinding.FieldName = 'id_equipo'
+      end
+      object cxGridDBTableView1cliente_id: TcxGridDBColumn
+        DataBinding.FieldName = 'cliente_id'
+        Visible = False
+      end
+      object cxGridDBTableView1cliente: TcxGridDBColumn
+        DataBinding.FieldName = 'cliente'
+      end
+      object cxGridDBTableView1tipo_equipo_id: TcxGridDBColumn
+        DataBinding.FieldName = 'tipo_equipo_id'
+        Visible = False
+      end
+      object cxGridDBTableView1equipo: TcxGridDBColumn
+        DataBinding.FieldName = 'equipo'
+      end
+      object cxGridDBTableView1marca_id: TcxGridDBColumn
+        DataBinding.FieldName = 'marca_id'
+        Visible = False
+      end
+      object cxGridDBTableView1marca: TcxGridDBColumn
+        DataBinding.FieldName = 'marca'
+      end
+      object cxGridDBTableView1modelo: TcxGridDBColumn
+        DataBinding.FieldName = 'modelo'
+      end
+      object cxGridDBTableView1numero_serie: TcxGridDBColumn
+        DataBinding.FieldName = 'numero_serie'
+      end
+      object cxGridDBTableView1observaciones: TcxGridDBColumn
+        DataBinding.FieldName = 'observaciones'
+      end
+      object cxGridDBTableView1fecha_alta: TcxGridDBColumn
+        DataBinding.FieldName = 'fecha_alta'
+      end
+    end
+  end
+  inherited dsDatos: TDataSource
+    DataSet = dmEquipos.zqEquipos
+  end
+end

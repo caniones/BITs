@@ -1,0 +1,214 @@
+object dmEquipos: TdmEquipos
+  OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  Left = 579
+  Top = 243
+  Height = 364
+  Width = 477
+  object zqEquipos: TZQuery
+    SortedFields = 'fecha_alta'
+    Connection = dmConexion.zConnection
+    Sequence = zsEquipos
+    SequenceField = 'id_equipo'
+    UpdateObject = zusEquipos
+    SQL.Strings = (
+      
+        'select e.id_equipo, e.cliente_id, c.cliente, e.tipo_equipo_id, t' +
+        'e.equipo, e.marca_id, m.marca, modelo, e.numero_serie, e.observa' +
+        'ciones, e.fecha_alta'#10
+      'from equipos e'#10
+      'inner join clientes c on c.id_cliente = e.cliente_id'#10
+      
+        'inner join tipos_equipos te on te.id_tipo_equipo = e.tipo_equipo' +
+        '_id'#10
+      'inner join marcas m on m.id_marca = e.marca_id'#10
+      'left join equipos_notebook enb on e.id_equipo = enb.id_equipo'#10
+      'left join equipos_pc epc on e.id_equipo = epc.id_equipo')
+    Params = <>
+    IndexFieldNames = 'fecha_alta Asc'
+    Left = 32
+    Top = 8
+    object zqEquiposid_equipo: TIntegerField
+      DisplayLabel = 'ID Equipo'
+      FieldName = 'id_equipo'
+    end
+    object zqEquiposcliente_id: TIntegerField
+      FieldName = 'cliente_id'
+      Required = True
+    end
+    object zqEquiposcliente: TStringField
+      DisplayLabel = 'Cliente'
+      DisplayWidth = 30
+      FieldName = 'cliente'
+      Size = 100
+    end
+    object zqEquipostipo_equipo_id: TIntegerField
+      FieldName = 'tipo_equipo_id'
+      Required = True
+    end
+    object zqEquiposequipo: TStringField
+      DisplayLabel = 'Equipo'
+      DisplayWidth = 20
+      FieldName = 'equipo'
+      Size = 100
+    end
+    object zqEquiposmarca_id: TIntegerField
+      FieldName = 'marca_id'
+      Required = True
+    end
+    object zqEquiposmarca: TStringField
+      DisplayLabel = 'Marca'
+      DisplayWidth = 20
+      FieldName = 'marca'
+      Size = 50
+    end
+    object zqEquiposmodelo: TStringField
+      DisplayLabel = 'Modelo'
+      DisplayWidth = 20
+      FieldName = 'modelo'
+      Size = 100
+    end
+    object zqEquiposnumero_serie: TStringField
+      DisplayLabel = 'Numero de serie'
+      DisplayWidth = 20
+      FieldName = 'numero_serie'
+      Size = 50
+    end
+    object zqEquiposobservaciones: TStringField
+      DisplayLabel = 'Observaciones'
+      DisplayWidth = 50
+      FieldName = 'observaciones'
+      Size = 200
+    end
+    object zqEquiposfecha_alta: TDateTimeField
+      DisplayLabel = 'Fecha de alta'
+      DisplayWidth = 20
+      FieldName = 'fecha_alta'
+    end
+  end
+  object zusEquipos: TZUpdateSQL
+    InsertSQL.Strings = (
+      
+        'INSERT INTO public.equipos(cliente_id, tipo_equipo_id, marca_id,' +
+        ' modelo, numero_serie, observaciones)'#10
+      
+        'VALUES (:cliente_id, :tipo_equipo_id, :marca_id, :modelo, :numer' +
+        'o_serie, :observaciones)')
+    ModifySQL.Strings = (
+      'UPDATE public.equipos'#10
+      
+        'SET cliente_id= :cliente_id, tipo_equipo_id= :tipo_equipo_id, ma' +
+        'rca_id= :marca_id, modelo= :modelo, numero_serie= :numero_serie,' +
+        ' observaciones= :observaciones'#10
+      'WHERE id_equipo= :id_equipo')
+    UseSequenceFieldForRefreshSQL = False
+    Left = 32
+    Top = 104
+    ParamData = <
+      item
+        Name = 'cliente_id'
+      end
+      item
+        Name = 'tipo_equipo_id'
+      end
+      item
+        Name = 'marca_id'
+      end
+      item
+        Name = 'modelo'
+      end
+      item
+        Name = 'numero_serie'
+      end
+      item
+        Name = 'observaciones'
+      end
+      item
+        Name = 'id_equipo'
+      end>
+  end
+  object zsEquipos: TZSequence
+    Connection = dmConexion.zConnection
+    SequenceName = 'public.equipos_id_equipo_seq'
+    Left = 32
+    Top = 56
+  end
+  object zroqClientes: TZReadOnlyQuery
+    Connection = dmConexion.zConnection
+    SQL.Strings = (
+      'select * from clientes')
+    Params = <>
+    Left = 200
+    Top = 8
+    object zroqClientesid_cliente: TIntegerField
+      FieldName = 'id_cliente'
+      ReadOnly = True
+    end
+    object zroqClientescliente: TStringField
+      FieldName = 'cliente'
+      ReadOnly = True
+      Size = 100
+    end
+    object zroqClientestelefono: TStringField
+      FieldName = 'telefono'
+      ReadOnly = True
+    end
+    object zroqClientesemail: TStringField
+      FieldName = 'email'
+      ReadOnly = True
+      Size = 100
+    end
+    object zroqClientesdireccion: TStringField
+      FieldName = 'direccion'
+      ReadOnly = True
+      Size = 100
+    end
+    object zroqClientesobservaciones: TStringField
+      FieldName = 'observaciones'
+      ReadOnly = True
+      Size = 200
+    end
+    object zroqClientesfecha_alta: TDateTimeField
+      FieldName = 'fecha_alta'
+      ReadOnly = True
+    end
+    object zroqClientesfecha_baja: TDateTimeField
+      FieldName = 'fecha_baja'
+      ReadOnly = True
+    end
+  end
+  object zroqMarcas: TZReadOnlyQuery
+    Connection = dmConexion.zConnection
+    SQL.Strings = (
+      'select * from marcas')
+    Params = <>
+    Left = 304
+    Top = 8
+    object zroqMarcasid_marca: TIntegerField
+      FieldName = 'id_marca'
+      ReadOnly = True
+    end
+    object zroqMarcasmarca: TStringField
+      FieldName = 'marca'
+      ReadOnly = True
+      Size = 50
+    end
+  end
+  object zroqTiposEquipos: TZReadOnlyQuery
+    Connection = dmConexion.zConnection
+    SQL.Strings = (
+      'select * from tipos_equipos')
+    Params = <>
+    Left = 200
+    Top = 56
+    object zroqTiposEquiposid_tipo_equipo: TIntegerField
+      FieldName = 'id_tipo_equipo'
+      ReadOnly = True
+    end
+    object zroqTiposEquiposequipo: TStringField
+      FieldName = 'equipo'
+      ReadOnly = True
+      Size = 100
+    end
+  end
+end
