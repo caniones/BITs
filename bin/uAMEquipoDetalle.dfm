@@ -1,0 +1,207 @@
+inherited frmAMEquipoDetalle: TfrmAMEquipoDetalle
+  Left = 482
+  Top = 224
+  Caption = 'Detalles del equipo'
+  ClientHeight = 330
+  ClientWidth = 569
+  OldCreateOrder = True
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited PanelButton: TPanel
+    Top = 272
+    inherited btnAceptar: TSpeedButton
+      OnClick = btnAceptarClick
+    end
+    inherited btnSalir: TSpeedButton
+      Visible = False
+    end
+  end
+  inherited PanelHeader: TPanel
+    inherited lInfo: TLabel
+      Width = 110
+      Caption = 'Detalles del equipo'
+    end
+  end
+  object gbNotebook: TGroupBox
+    Left = 8
+    Top = 64
+    Width = 265
+    Height = 193
+    Caption = 'Notebook'
+    TabOrder = 2
+    object Label1: TLabel
+      Left = 8
+      Top = 24
+      Width = 38
+      Height = 13
+      Caption = 'Pantalla'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 1738751
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 8
+      Top = 64
+      Width = 54
+      Height = 13
+      Caption = 'Procesador'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 1738751
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label3: TLabel
+      Left = 8
+      Top = 104
+      Width = 40
+      Height = 13
+      Caption = 'Memoria'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 1738751
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label4: TLabel
+      Left = 8
+      Top = 144
+      Width = 27
+      Height = 13
+      Caption = 'Disco'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 1738751
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+    end
+    object dbePantallaNB: TDBEdit
+      Left = 8
+      Top = 40
+      Width = 121
+      Height = 21
+      DataField = 'pantalla'
+      DataSource = dsEquiposNotebook
+      TabOrder = 0
+    end
+    object dbeProcesadorNB: TDBEdit
+      Left = 8
+      Top = 80
+      Width = 121
+      Height = 21
+      DataField = 'procesador'
+      DataSource = dsEquiposNotebook
+      TabOrder = 1
+    end
+    object dbeMemoriaNB: TDBEdit
+      Left = 8
+      Top = 120
+      Width = 121
+      Height = 21
+      DataField = 'memoria'
+      DataSource = dsEquiposNotebook
+      TabOrder = 2
+    end
+    object dbeDiscoNB: TDBEdit
+      Left = 8
+      Top = 160
+      Width = 121
+      Height = 21
+      DataField = 'disco'
+      DataSource = dsEquiposNotebook
+      TabOrder = 3
+    end
+  end
+  object gbPC: TGroupBox
+    Left = 280
+    Top = 64
+    Width = 265
+    Height = 193
+    Caption = 'PC'
+    TabOrder = 3
+    object Label5: TLabel
+      Left = 8
+      Top = 24
+      Width = 54
+      Height = 13
+      Caption = 'Procesador'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 1738751
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label6: TLabel
+      Left = 8
+      Top = 64
+      Width = 40
+      Height = 13
+      Caption = 'Memoria'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 1738751
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label7: TLabel
+      Left = 8
+      Top = 104
+      Width = 27
+      Height = 13
+      Caption = 'Disco'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 1738751
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+    end
+    object dbeProcesadorPC: TDBEdit
+      Left = 8
+      Top = 40
+      Width = 121
+      Height = 21
+      DataField = 'procesador'
+      DataSource = dsEquiposPC
+      TabOrder = 0
+    end
+    object dbeMemoriaPC: TDBEdit
+      Left = 8
+      Top = 80
+      Width = 121
+      Height = 21
+      DataField = 'memoria'
+      DataSource = dsEquiposPC
+      TabOrder = 1
+    end
+    object dbeDiscoPC: TDBEdit
+      Left = 8
+      Top = 120
+      Width = 121
+      Height = 21
+      DataField = 'disco'
+      DataSource = dsEquiposPC
+      TabOrder = 2
+    end
+  end
+  object dsEquiposNotebook: TDataSource
+    AutoEdit = False
+    DataSet = dmOrdenesTrabajos.zqEquiposNotebook
+    Left = 240
+    Top = 72
+  end
+  object dsEquiposPC: TDataSource
+    AutoEdit = False
+    DataSet = dmOrdenesTrabajos.zqEquiposPC
+    Left = 240
+    Top = 120
+  end
+end

@@ -1,0 +1,74 @@
+unit uAMEquipo;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, uImputForm, StdCtrls, Buttons, ExtCtrls, DBCtrls, DB, Mask;
+
+type
+  TfrmAMEquipo = class(TfrmImput)
+    dsClientes: TDataSource;
+    dsDatos: TDataSource;
+    dsTiposEquipos: TDataSource;
+    dsMarcas: TDataSource;
+    dblcCliente: TDBLookupComboBox;
+    dblcTipoEquipo: TDBLookupComboBox;
+    dblcMarca: TDBLookupComboBox;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    dbeNumeroSerie: TDBEdit;
+    dbmObservaciones: TDBMemo;
+    Label5: TLabel;
+    dbeModelo: TDBEdit;
+    Label6: TLabel;
+    Label7: TLabel;
+    procedure btnAceptarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+    function validarGuardar(): Boolean;
+  public
+    { Public declarations }
+  end;
+
+var
+  frmAMEquipo: TfrmAMEquipo;
+
+implementation
+
+uses udmEquipos;
+
+{$R *.dfm}
+
+procedure TfrmAMEquipo.btnAceptarClick(Sender: TObject);
+begin
+  inherited;
+  if self.validarGuardar then
+    self.ModalResult:=mrOK
+  else
+    application.MessageBox('Los campos en naranja son requeridos', 'Atención',
+      MB_ICONWARNING);
+end;
+
+function TfrmAMEquipo.validarGuardar: Boolean;
+begin
+  result:=false;
+  if (dblcCliente.KeyValue <> null) and (dblcTipoEquipo.KeyValue <> null)
+    and (dblcMarca.KeyValue <> null) then
+    result:=true;
+end;
+
+procedure TfrmAMEquipo.FormShow(Sender: TObject);
+begin
+  inherited;
+  if dsDatos.DataSet.State = dsEdit then
+    self.Caption:= self.Caption+' - Modificación de datos';
+  if dsDatos.DataSet.State = dsInsert then
+    self.Caption:= self.Caption+' - Alta de datos';
+end;
+
+
+end.

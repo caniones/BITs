@@ -1,0 +1,33 @@
+program BITs;
+
+uses
+  Forms,
+  uMain in 'uMain.pas' {frmMain},
+  udmConexion in 'udmConexion.pas' {dmConexion: TDataModule},
+  uPublicos in 'uPublicos.pas',
+  udmOrdenesTrabajos in 'udmOrdenesTrabajos.pas' {dmOrdenesTrabajos: TDataModule},
+  uABMbase in '..\inherited\uABMbase.pas' {frmABMbase},
+  uImputForm in '..\inherited\uImputForm.pas' {frmImput},
+  uRepBase in '..\inherited\uRepBase.pas' {frmRepBase},
+  uAMOrdenTrabajo in 'uAMOrdenTrabajo.pas' {frmAMOrdenTrabajo},
+  uABMMarcas in 'uABMMarcas.pas' {frmABMMarcas},
+  uAMMarca in 'uAMMarca.pas' {frmAMMarca},
+  udmMarcas in 'udmMarcas.pas' {dmMarcas: TDataModule},
+  uABMEquipos in 'uABMEquipos.pas' {frmABMEquipos},
+  udmEquipos in 'udmEquipos.pas' {dmEquipos: TDataModule},
+  uAMEquipo in 'uAMEquipo.pas' {frmAMEquipo},
+  udmClientes in 'udmClientes.pas' {dmClientes: TDataModule},
+  uABMClientes in 'uABMClientes.pas' {frmABMClientes},
+  uAMCliente in 'uAMCliente.pas' {frmAMCliente},
+  uAMOrdenTrabajoDetalle in 'uAMOrdenTrabajoDetalle.pas' {frmAMOrdenTrabajoDetalle},
+  uAMOrdenTrabajoRepuesto in 'uAMOrdenTrabajoRepuesto.pas' {frmAMOrdenTrabajoRepuesto},
+  uAMEquipoDetalle in 'uAMEquipoDetalle.pas' {frmAMEquipoDetalle},
+  uRepOrdenTrabajo in 'uRepOrdenTrabajo.pas' {frmRepOrdenTrabajo};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.CreateForm(TfrmMain, frmMain);
+  Application.Run;
+end.

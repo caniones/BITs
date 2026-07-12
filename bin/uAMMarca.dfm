@@ -1,0 +1,50 @@
+inherited frmAMMarca: TfrmAMMarca
+  Left = 511
+  Top = 268
+  Caption = 'Marca'
+  OldCreateOrder = True
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel [0]
+    Left = 16
+    Top = 80
+    Width = 30
+    Height = 13
+    Caption = 'Marca'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = 1738751
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentFont = False
+  end
+  inherited PanelButton: TPanel
+    inherited btnAceptar: TSpeedButton
+      OnClick = btnAceptarClick
+    end
+    inherited btnSalir: TSpeedButton
+      Visible = False
+    end
+  end
+  inherited PanelHeader: TPanel
+    inherited lInfo: TLabel
+      Width = 36
+      Caption = 'Marca'
+    end
+  end
+  object dbeMarca: TDBEdit
+    Left = 16
+    Top = 96
+    Width = 273
+    Height = 21
+    DataField = 'marca'
+    DataSource = dsDatos
+    TabOrder = 2
+  end
+  object dsDatos: TDataSource
+    DataSet = dmMarcas.zqMarcas
+    Left = 256
+    Top = 120
+  end
+end

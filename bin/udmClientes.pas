@@ -1,0 +1,70 @@
+unit udmClientes;
+
+interface
+
+uses
+  SysUtils, Classes, ZSqlUpdate, ZAbstractConnection, ZSequence, DB,
+  ZAbstractRODataset, ZAbstractDataset, ZDataset;
+
+type
+  TdmClientes = class(TDataModule)
+    zqClientes: TZQuery;
+    zsClientes: TZSequence;
+    zusClientes: TZUpdateSQL;
+    zqClientesid_cliente: TIntegerField;
+    zqClientescliente: TStringField;
+    zqClientestelefono: TStringField;
+    zqClientesemail: TStringField;
+    zqClientesdireccion: TStringField;
+    zqClientesobservaciones: TStringField;
+    zqClientesfecha_alta: TDateTimeField;
+    zqClientesfecha_baja: TDateTimeField;
+    procedure DataModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+    procedure abrirDM();
+    procedure refrescar();
+  public
+    { Public declarations }
+    procedure grabar();
+  end;
+
+var
+  dmClientes: TdmClientes;
+
+implementation
+
+uses udmConexion;
+
+{$R *.dfm}
+
+{ TdmClientes }
+
+procedure TdmClientes.abrirDM;
+begin
+  zqClientes.Close;
+  zqClientes.Open;
+end;
+
+procedure TdmClientes.grabar;
+begin
+  try
+    zqClientes.ApplyUpdates;
+    zqClientes.Connection.Commit;
+  except
+    zqClientes.Connection.Rollback;
+  end;
+  self.refrescar;
+end;
+
+procedure TdmClientes.DataModuleCreate(Sender: TObject);
+begin
+  self.abrirDM;
+end;
+
+procedure TdmClientes.refrescar;
+begin
+  zqClientes.Refresh;
+end;
+
+end.
