@@ -45,4 +45,16 @@ Evitá pérdidas económicas y asegurá la rentabilidad:
 
 ## 🛠️ Tecnologías Detrás del Sistema
 
-Para lograr una aplicación **rápida, liviana y muy segura** que no requiera computadoras potentes ni modernas para funcionar en el taller, BIT
+Para lograr una aplicación **rápida, liviana y muy segura** que no requiera computadoras potentes ni modernas para funcionar en el taller, BITs utiliza:
+
+* **Entorno Visual:** Delphi 7 (Garantiza un programa rápido que arranca al instante).
+* **Motor de Datos:** PostgreSQL (Tus datos protegidos en una base de datos profesional).
+* **Conector:** ZeosLib (Asegura que el programa y la base de datos hablen de forma fluida y sin microcortes).
+
+---
+
+## 💡 Ventajas Clave para tu Negocio
+
+1. **Transparencia absoluta:** Ante cualquier duda de un cliente, tenés la ficha de hardware exacta con la que ingresó el equipo.
+2. **Historial clínico de la PC:** Si un equipo vuelve meses después, podés revisar la bitácora anterior para ver qué falla tuvo y qué componentes se le cambiaron.
+3. **Mayor orden:** Identificá al instante qué equipos urgen repararse y cuáles están listos para retirar, mejorando la satisfacción del cliente.
