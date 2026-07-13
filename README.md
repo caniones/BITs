@@ -58,3 +58,6 @@ Para lograr una aplicación **rápida, liviana y muy segura** que no requiera co
 1. **Transparencia absoluta:** Ante cualquier duda de un cliente, tenés la ficha de hardware exacta con la que ingresó el equipo.
 2. **Historial clínico de la PC:** Si un equipo vuelve meses después, podés revisar la bitácora anterior para ver qué falla tuvo y qué componentes se le cambiaron.
 3. **Mayor orden:** Identificá al instante qué equipos urgen repararse y cuáles están listos para retirar, mejorando la satisfacción del cliente.
+
+## Video de instalación
+* 🔗 [Cómo instalar aquí](https://youtu.be/JZErZfWn8Yk)
