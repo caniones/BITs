@@ -41,6 +41,8 @@ begin
   inherited;
   if self.validarGuardar then
     begin
+    dblcEstado.SetFocus;
+    dbmDetalle.SetFocus;
     dtpFecha.Time:=time;
     dsDatos.DataSet.FieldByName('fecha').AsDateTime:=dtpFecha.Date;
     dsDatos.DataSet.FieldByName('tiempo').AsDateTime:=dtpTiempo.Time;
@@ -65,11 +67,13 @@ begin
     begin
     dtpFecha.Date:=date;
     dtpTiempo.Time:=date;
+    dblcEstado.SetFocus;
     end;
   if dsDatos.DataSet.State = dsEdit then
     begin
     dtpFecha.Date:=dsDatos.DataSet.FieldByName('fecha').AsDateTime;
     dtpTiempo.Time:=dsDatos.DataSet.FieldByName('tiempo').AsDateTime;
+    dbmDetalle.SetFocus;
     end;
 end;
 

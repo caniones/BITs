@@ -1,8 +1,8 @@
 object dmConexion: TdmConexion
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Left = 543
-  Top = 207
+  Left = 544
+  Top = 208
   Height = 306
   Width = 400
   object zConnection: TZConnection
@@ -16,10 +16,11 @@ object dmConexion: TdmConexion
     DisableSavepoints = False
     HostName = 'localhost'
     Port = 5432
-    Database = 'bits'
+    Database = 'bits-testing'
     User = 'postgres'
     Password = 'isidoro'
     Protocol = 'postgresql'
+    LibraryLocation = 'C:\Program Files (x86)\psqlODBC\1800\bin\libpq.dll'
     Left = 48
     Top = 16
   end

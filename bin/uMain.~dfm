@@ -109,6 +109,13 @@ object frmMain: TfrmMain
         Caption = 'Modificar la Orden de Trabajo'
         OnClick = ModificarOrdenTrabajoClick
       end
+      object N2: TMenuItem
+        Caption = '-'
+      end
+      object ImprimirOrdenTrabajo: TMenuItem
+        Caption = 'Imprimir la Orden de Trabajo'
+        OnClick = ImprimirOrdenTrabajoClick
+      end
     end
   end
   object dsDatos: TDataSource
@@ -131,9 +138,9 @@ object frmMain: TfrmMain
     object N1: TMenuItem
       Caption = '-'
     end
-    object ImprimirOrdenTrabajo1: TMenuItem
+    object popupImprimirOrdenTrabajo: TMenuItem
       Caption = 'Imprimir la Orden de rabajo'
-      OnClick = ImprimirOrdenTrabajo1Click
+      OnClick = popupImprimirOrdenTrabajoClick
     end
   end
 end

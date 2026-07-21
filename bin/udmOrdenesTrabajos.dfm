@@ -1,8 +1,8 @@
 object dmOrdenesTrabajos: TdmOrdenesTrabajos
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Left = 464
-  Top = 212
+  Left = 465
+  Top = 213
   Height = 418
   Width = 769
   object zusOrdenes: TZUpdateSQL
@@ -69,15 +69,22 @@ object dmOrdenesTrabajos: TdmOrdenesTrabajos
   object zusOrdenesRepuestos: TZUpdateSQL
     DeleteSQL.Strings = (
       'DELETE FROM public.ordenes_repuestos'#10
-      #9'WHERE ordenes_repuestos = :ordenes_repuestos')
+      ''
+      'WHERE id_orden_repuesto = :id_orden_repuesto')
     InsertSQL.Strings = (
       
         'INSERT INTO public.ordenes_repuestos(id_orden_repuesto, orden_id' +
         ', descripcion, costo)'#10
+      ''
+      ''
       'VALUES (:id_orden_repuesto, :orden_id, :descripcion, :costo);')
     ModifySQL.Strings = (
       'UPDATE public.ordenes_repuestos'#10
+      ''
+      ''
       'SET descripcion= :descripcion, costo=:costo'#10
+      ''
+      ''
       'WHERE id_orden_repuesto = :id_orden_repuesto')
     UseSequenceFieldForRefreshSQL = False
     Left = 168
@@ -94,9 +101,6 @@ object dmOrdenesTrabajos: TdmOrdenesTrabajos
       end
       item
         Name = 'orden_id'
-      end
-      item
-        Name = 'ordenes_repuestos'
       end>
   end
   object dsOrdenes: TDataSource
@@ -260,12 +264,13 @@ object dmOrdenesTrabajos: TdmOrdenesTrabajos
       FieldName = 'descripcion'
       Size = 100
     end
-    object zqOrdenesRepuestoscosto: TBCDField
+    object zqOrdenesRepuestoscosto: TFMTBCDField
       DisplayLabel = 'Costo'
       DisplayWidth = 20
       FieldName = 'costo'
       DisplayFormat = '$#,##0.00'
-      Precision = 22
+      EditFormat = '#,##0.00'
+      Precision = 18
       Size = 2
     end
   end
@@ -373,12 +378,14 @@ object dmOrdenesTrabajos: TdmOrdenesTrabajos
     Top = 256
   end
   object zroqEstados: TZReadOnlyQuery
+    SortedFields = 'id_estado'
     Connection = dmConexion.zConnection
     SQL.Strings = (
       'SELECT *'#10
       'FROM estados')
     Params = <>
-    Left = 576
+    IndexFieldNames = 'id_estado Asc'
+    Left = 592
     Top = 16
     object zroqEstadosid_estado: TIntegerField
       FieldName = 'id_estado'
@@ -531,12 +538,38 @@ object dmOrdenesTrabajos: TdmOrdenesTrabajos
   object zroqCostoTotal: TZReadOnlyQuery
     Connection = dmConexion.zConnection
     SQL.Strings = (
-      'SELECT COALESCE('
-      '    (SELECT SUM(odr.costo) '
-      '     FROM ordenes_repuestos odr '
-      '     WHERE odr.orden_id = :id_orden), '
-      '    CAST(0 AS money)'
-      ') as costo_total;')
+      'SELECT COALESCE('#10
+      ''
+      #10
+      ''
+      #10
+      ''
+      '    (SELECT SUM(odr.costo) '#10
+      ''
+      #10
+      ''
+      #10
+      ''
+      '     FROM ordenes_repuestos odr '#10
+      ''
+      #10
+      ''
+      #10
+      ''
+      '     WHERE odr.orden_id = :id_orden), '#10
+      ''
+      #10
+      ''
+      #10
+      ''
+      '    CAST(0 AS NUMERIC)'#10
+      ''
+      #10
+      ''
+      #10
+      ''
+      ') as costo_total;'#10
+      '')
     Params = <
       item
         Name = 'id_orden'
@@ -548,12 +581,57 @@ object dmOrdenesTrabajos: TdmOrdenesTrabajos
       item
         Name = 'id_orden'
       end>
-    object zroqCostoTotalcosto_total: TBCDField
+    object zroqCostoTotalcosto_total: TFMTBCDField
+      DisplayLabel = 'Costo total'
+      DisplayWidth = 20
       FieldName = 'costo_total'
       ReadOnly = True
       DisplayFormat = '$#,##0.00'
-      Precision = 22
-      Size = 2
+      Size = 0
+    end
+  end
+  object zqClientes: TZQuery
+    Connection = dmConexion.zConnection
+    SQL.Strings = (
+      
+        'SELECT id_cliente, cliente, telefono, email, direccion, observac' +
+        'iones, fecha_alta, fecha_baja'#10
+      #9'FROM public.clientes;')
+    Params = <>
+    DataSource = dsEquipos
+    MasterFields = 'cliente_id'
+    MasterSource = dsEquipos
+    LinkedFields = 'id_cliente'
+    Left = 592
+    Top = 112
+    object zqClientesid_cliente: TIntegerField
+      FieldName = 'id_cliente'
+    end
+    object zqClientescliente: TStringField
+      FieldName = 'cliente'
+      Required = True
+      Size = 100
+    end
+    object zqClientestelefono: TStringField
+      FieldName = 'telefono'
+    end
+    object zqClientesemail: TStringField
+      FieldName = 'email'
+      Size = 100
+    end
+    object zqClientesdireccion: TStringField
+      FieldName = 'direccion'
+      Size = 100
+    end
+    object zqClientesobservaciones: TStringField
+      FieldName = 'observaciones'
+      Size = 200
+    end
+    object zqClientesfecha_alta: TDateTimeField
+      FieldName = 'fecha_alta'
+    end
+    object zqClientesfecha_baja: TDateTimeField
+      FieldName = 'fecha_baja'
     end
   end
 end

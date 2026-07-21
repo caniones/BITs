@@ -44,7 +44,6 @@ type
     zqOrdenesRepuestosfecha: TDateTimeField;
     zqOrdenesRepuestosorden_id: TIntegerField;
     zqOrdenesRepuestosdescripcion: TStringField;
-    zqOrdenesRepuestoscosto: TBCDField;
     zqOrdenesestado_id: TIntegerField;
     zqOrdenesdescripcion: TStringField;
     zroqEstados: TZReadOnlyQuery;
@@ -59,9 +58,19 @@ type
     zqOrdenesestado: TStringField;
     zroqTiempoTotal: TZReadOnlyQuery;
     zroqCostoTotal: TZReadOnlyQuery;
-    zroqCostoTotalcosto_total: TBCDField;
     zqOrdenesDetallesestado: TStringField;
     zroqTiempoTotaltiempo_total: TStringField;
+    zqClientes: TZQuery;
+    zqClientesid_cliente: TIntegerField;
+    zqClientescliente: TStringField;
+    zqClientestelefono: TStringField;
+    zqClientesemail: TStringField;
+    zqClientesdireccion: TStringField;
+    zqClientesobservaciones: TStringField;
+    zqClientesfecha_alta: TDateTimeField;
+    zqClientesfecha_baja: TDateTimeField;
+    zqOrdenesRepuestoscosto: TFMTBCDField;
+    zroqCostoTotalcosto_total: TFMTBCDField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

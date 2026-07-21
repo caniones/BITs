@@ -40,7 +40,9 @@ type
     cxgDatosDBTableView1estado_id: TcxGridDBColumn;
     cxgDatosDBTableView1estado: TcxGridDBColumn;
     N1: TMenuItem;
-    ImprimirOrdenTrabajo1: TMenuItem;
+    popupImprimirOrdenTrabajo: TMenuItem;
+    N2: TMenuItem;
+    ImprimirOrdenTrabajo: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure SALIR1Click(Sender: TObject);
     procedure FormResize(Sender: TObject);
@@ -55,7 +57,8 @@ type
     procedure cxgDatosDBTableView1CustomDrawCell(
       Sender: TcxCustomGridTableView; ACanvas: TcxCanvas;
       AViewInfo: TcxGridTableDataCellViewInfo; var ADone: Boolean);
-    procedure ImprimirOrdenTrabajo1Click(Sender: TObject);
+    procedure ImprimirOrdenTrabajoClick(Sender: TObject);
+    procedure popupImprimirOrdenTrabajoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -128,6 +131,7 @@ begin
   finally
     FFormulario.Free;
   end;
+  dmConexion.refrescar;
 end;
 
 procedure TfrmMain.Equipos1Click(Sender: TObject);
@@ -142,6 +146,7 @@ begin
   finally
     FFormulario.Free;
   end;
+  dmConexion.refrescar;
 end;
 
 procedure TfrmMain.Clientes1Click(Sender: TObject);
@@ -156,6 +161,7 @@ begin
   finally
     FFormulario.Free;
   end;
+  dmConexion.refrescar;
 end;
 
 procedure TfrmMain.NuevaOrdenTrabajoClick(Sender: TObject);
@@ -267,16 +273,30 @@ begin
         Application.ExeName,'.INI'), 'GRILLAS','800',''));
       ACanvas.Font.Color:=clBlack;
       end;
+  if(AViewInfo.GridRecord.Values[cxgDatosDBTableView1estado_id.Index]=900) then
+      begin
+      ACanvas.Brush.Color:=StringToColor(uPublicos.LeerIni(ChangeFileExt(
+        Application.ExeName,'.INI'), 'GRILLAS','900',''));
+      ACanvas.Font.Color:=clBlack;
+      end;
 end;
 
-procedure TfrmMain.ImprimirOrdenTrabajo1Click(Sender: TObject);
+procedure TfrmMain.ImprimirOrdenTrabajoClick(Sender: TObject);
 var
   FRep:TfrmRepOrdenTrabajo;
 begin
+  if not dsDatos.DataSet.IsEmpty then
+    begin
     FRep:=TfrmRepOrdenTrabajo.Create(self);
     FRep.imprimirOrden(dsDatos.DataSet.FieldByName('id_orden').Value);
     FRep.qrBase.PreviewModal;
     FRep.Free;
+    end;
+end;
+
+procedure TfrmMain.popupImprimirOrdenTrabajoClick(Sender: TObject);
+begin
+  self.ImprimirOrdenTrabajo.Click;
 end;
 
 end.

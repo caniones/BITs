@@ -1,8 +1,8 @@
 object dmConexion: TdmConexion
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Left = 543
-  Top = 207
+  Left = 544
+  Top = 208
   Height = 306
   Width = 400
   object zConnection: TZConnection
@@ -54,15 +54,18 @@ object dmConexion: TdmConexion
     Left = 48
     Top = 72
     object zroqOrdenesid_orden: TIntegerField
+      DisplayLabel = 'id orden'
       FieldName = 'id_orden'
       ReadOnly = True
     end
     object zroqOrdenesfecha: TDateTimeField
+      DisplayLabel = 'Fecha'
       DisplayWidth = 20
       FieldName = 'fecha'
       ReadOnly = True
     end
     object zroqOrdenescliente: TStringField
+      DisplayLabel = 'Cliente'
       DisplayWidth = 30
       FieldName = 'cliente'
       ReadOnly = True
@@ -73,30 +76,35 @@ object dmConexion: TdmConexion
       ReadOnly = True
     end
     object zroqOrdenesequipo: TStringField
+      DisplayLabel = 'Equipo'
       DisplayWidth = 20
       FieldName = 'equipo'
       ReadOnly = True
       Size = 100
     end
     object zroqOrdenesmarca: TStringField
+      DisplayLabel = 'Marca'
       DisplayWidth = 20
       FieldName = 'marca'
       ReadOnly = True
       Size = 50
     end
     object zroqOrdenesmodelo: TStringField
+      DisplayLabel = 'Modelo'
       DisplayWidth = 20
       FieldName = 'modelo'
       ReadOnly = True
       Size = 100
     end
     object zroqOrdenesnumero_serie: TStringField
+      DisplayLabel = 'Numero de serie'
       DisplayWidth = 20
       FieldName = 'numero_serie'
       ReadOnly = True
       Size = 50
     end
     object zroqOrdenesfalla: TStringField
+      DisplayLabel = 'Falla'
       DisplayWidth = 50
       FieldName = 'falla'
       ReadOnly = True
@@ -107,6 +115,7 @@ object dmConexion: TdmConexion
       ReadOnly = True
     end
     object zroqOrdenesestado: TStringField
+      DisplayLabel = 'Estado'
       DisplayWidth = 20
       FieldName = 'estado'
       ReadOnly = True

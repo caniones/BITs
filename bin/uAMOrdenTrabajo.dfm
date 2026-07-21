@@ -1,6 +1,6 @@
 inherited frmAMOrdenTrabajo: TfrmAMOrdenTrabajo
-  Left = 410
-  Top = 133
+  Left = 411
+  Top = 134
   Width = 991
   Height = 665
   HorzScrollBar.Visible = False
@@ -367,6 +367,13 @@ inherited frmAMOrdenTrabajo: TfrmAMOrdenTrabajo
       Caption = 'Borrar Detalle'
       OnClick = BorrarDetalle1Click
     end
+    object N3: TMenuItem
+      Caption = '-'
+    end
+    object NotificarWhatsApp1: TMenuItem
+      Caption = 'Notificar por WhatsApp'
+      OnClick = NotificarWhatsApp1Click
+    end
   end
   object PopupMenuRespuesto: TPopupMenu
     Left = 304
@@ -398,5 +405,11 @@ inherited frmAMOrdenTrabajo: TfrmAMOrdenTrabajo
     DataSet = dmOrdenesTrabajos.zroqCostoTotal
     Left = 848
     Top = 152
+  end
+  object dsClientes: TDataSource
+    AutoEdit = False
+    DataSet = dmOrdenesTrabajos.zqClientes
+    Left = 880
+    Top = 264
   end
 end

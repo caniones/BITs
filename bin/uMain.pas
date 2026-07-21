@@ -131,6 +131,7 @@ begin
   finally
     FFormulario.Free;
   end;
+  dmConexion.refrescar;
 end;
 
 procedure TfrmMain.Equipos1Click(Sender: TObject);
@@ -145,6 +146,7 @@ begin
   finally
     FFormulario.Free;
   end;
+  dmConexion.refrescar;
 end;
 
 procedure TfrmMain.Clientes1Click(Sender: TObject);
@@ -159,6 +161,7 @@ begin
   finally
     FFormulario.Free;
   end;
+  dmConexion.refrescar;
 end;
 
 procedure TfrmMain.NuevaOrdenTrabajoClick(Sender: TObject);
@@ -268,6 +271,12 @@ begin
       begin
       ACanvas.Brush.Color:=StringToColor(uPublicos.LeerIni(ChangeFileExt(
         Application.ExeName,'.INI'), 'GRILLAS','800',''));
+      ACanvas.Font.Color:=clBlack;
+      end;
+  if(AViewInfo.GridRecord.Values[cxgDatosDBTableView1estado_id.Index]=900) then
+      begin
+      ACanvas.Brush.Color:=StringToColor(uPublicos.LeerIni(ChangeFileExt(
+        Application.ExeName,'.INI'), 'GRILLAS','900',''));
       ACanvas.Font.Color:=clBlack;
       end;
 end;

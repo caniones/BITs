@@ -66,15 +66,18 @@ type
     cxgEquiposDBTableView1numero_serie: TcxGridDBColumn;
     cxgEquiposDBTableView1observaciones: TcxGridDBColumn;
     cxgEquiposDBTableView1fecha_alta: TcxGridDBColumn;
+    dbtIdOrden: TDBText;
+    dbtFecha: TDBText;
+    dbtEstado: TDBText;
+    lTiempoTotal: TLabel;
+    N3: TMenuItem;
+    NotificarWhatsApp1: TMenuItem;
+    dsClientes: TDataSource;
     cxgRepuestosDBTableView1id_orden_repuesto: TcxGridDBColumn;
     cxgRepuestosDBTableView1fecha: TcxGridDBColumn;
     cxgRepuestosDBTableView1orden_id: TcxGridDBColumn;
     cxgRepuestosDBTableView1descripcion: TcxGridDBColumn;
     cxgRepuestosDBTableView1costo: TcxGridDBColumn;
-    dbtIdOrden: TDBText;
-    dbtFecha: TDBText;
-    dbtEstado: TDBText;
-    lTiempoTotal: TLabel;
     procedure btnAceptarClick(Sender: TObject);
     procedure AgregarDetalle1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -92,6 +95,7 @@ type
     procedure ModificarRepuesto1Click(Sender: TObject);
     procedure cxgDetallesDBTableView1DblClick(Sender: TObject);
     procedure cxgRepuestosDBTableView1DblClick(Sender: TObject);
+    procedure NotificarWhatsApp1Click(Sender: TObject);
   private
     { Private declarations }
     procedure actualizarLabelTiempo();
@@ -110,7 +114,7 @@ implementation
 
 uses udmOrdenesTrabajos, udmOrdenesTrabajosDetalles,
   uAMOrdenTrabajoDetalle, uAMOrdenTrabajoRepuesto, uAMEquipoDetalle,
-  uPublicos;
+  uPublicos, ShellAPI, IdURI;
 
 var
   dmOrdenes: TdmOrdenesTrabajos;
@@ -292,6 +296,8 @@ begin
   if dsDatos.State = dsInsert then
     begin
     cxgEquipos.Width:=self.Width-27;
+    cxgDetalles.Enabled:=false;
+    cxgRepuestos.Enabled:=false;
     end;
   if dsDatos.State = dsEdit then
     begin
@@ -364,6 +370,12 @@ begin
         Application.ExeName,'.INI'), 'GRILLAS','800',''));
       ACanvas.Font.Color:=clBlack;
       end;
+  if(AViewInfo.GridRecord.Values[cxgDetallesDBTableView1estado_id.Index]=900) then
+      begin
+      ACanvas.Brush.Color:=StringToColor(uPublicos.LeerIni(ChangeFileExt(
+        Application.ExeName,'.INI'), 'GRILLAS','900',''));
+      ACanvas.Font.Color:=clBlack;
+      end;
 end;
 
 procedure TfrmAMOrdenTrabajo.EliminarRepuesto1Click(Sender: TObject);
@@ -415,6 +427,25 @@ begin
   lTiempoTotal.Caption:=
     Copy(dsTiempo.DataSet.FieldByName('tiempo_total').AsString, 1, 5);
   //Copy(zroqTiempoTotaltiempo_total.AsString, 1, 5);
+end;
+
+procedure TfrmAMOrdenTrabajo.NotificarWhatsApp1Click(Sender: TObject);
+var
+  laRuta, elLink, elMensaje, elTelefono, elEstado, elDetalle: string;
+begin
+  inherited;
+  dsClientes.DataSet.Close;
+  dsClientes.DataSet.Open;
+  elTelefono:=dsClientes.DataSet.FieldByName('telefono').AsString;
+  elEstado:=dsOrdenesDetalles.DataSet.FieldByName('estado').AsString;
+  elDetalle:=dsOrdenesDetalles.DataSet.FieldByName('detalle').AsString;
+  elMensaje:='Estado: '+elEstado+' - '+elDetalle+' - Es un mensaje automático.';
+  //https://wa.me/543415606207?text=Hola,%20quiero%20m%C3%A1s%20informaci%C3%B3n
+  elMensaje:=TIdURI.ParamsEncode(elMensaje);
+  elLink:='https://wa.me/'+elTelefono+'?text='+elMensaje;
+  laRuta:=uPublicos.LeerIni(ChangeFileExt(Application.ExeName,'.INI'),
+    'CONF','BROWSER','');
+  ShellExecute(Handle, 'open', PChar(laRuta),PChar(elLink),nil,SW_SHOW);
 end;
 
 end.

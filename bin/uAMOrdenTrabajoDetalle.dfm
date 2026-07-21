@@ -1,6 +1,6 @@
 inherited frmAMOrdenTrabajoDetalle: TfrmAMOrdenTrabajoDetalle
-  Left = 540
-  Top = 329
+  Left = 541
+  Top = 330
   Caption = 'Detalle de la orden de trabajo'
   ClientHeight = 314
   ClientWidth = 544
