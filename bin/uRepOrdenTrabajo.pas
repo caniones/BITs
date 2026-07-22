@@ -37,11 +37,9 @@ type
     zqOrdenRepuestofecha: TDateTimeField;
     zqOrdenRepuestoorden_id: TIntegerField;
     zqOrdenRepuestodescripcion: TStringField;
-    zqOrdenRepuestocosto: TBCDField;
     QRDBText6: TQRDBText;
     GroupHeaderBand1: TQRBand;
     QRLabel7: TQRLabel;
-    QRDBText7: TQRDBText;
     QRLabel8: TQRLabel;
     QRLabel9: TQRLabel;
     QRDBText8: TQRDBText;
@@ -72,9 +70,11 @@ type
     QRLabel15: TQRLabel;
     QRLabel16: TQRLabel;
     zroqCostoTotal: TZReadOnlyQuery;
-    zroqCostoTotalcosto_total: TBCDField;
     QRDBText15: TQRDBText;
     qrlTiempo: TQRLabel;
+    zroqCostoTotalcosto_total: TFMTBCDField;
+    zqOrdenRepuestocosto: TFMTBCDField;
+    QRDBText7: TQRDBText;
     procedure qrBaseBeforePrint(Sender: TCustomQuickRep;
       var PrintReport: Boolean);
   private

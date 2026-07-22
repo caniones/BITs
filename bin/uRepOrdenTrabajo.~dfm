@@ -47,11 +47,10 @@ inherited frmRepOrdenTrabajo: TfrmRepOrdenTrabajo
         FontSize = 10
       end
       inherited qrlRenglon1: TQRLabel [3]
-        Left = 224
         Enabled = True
         Size.Values = (
           79.375000000000000000
-          592.666666666666700000
+          402.166666666666700000
           2.645833333333333000
           455.083333333333300000)
         FontSize = 18
@@ -774,39 +773,6 @@ inherited frmRepOrdenTrabajo: TfrmRepOrdenTrabajo
         WordWrap = True
         FontSize = 8
       end
-      object QRDBText7: TQRDBText
-        Left = 520
-        Top = 0
-        Width = 28
-        Height = 17
-        Frame.Color = clBlack
-        Frame.DrawTop = False
-        Frame.DrawBottom = False
-        Frame.DrawLeft = False
-        Frame.DrawRight = False
-        Size.Values = (
-          44.979166666666670000
-          1375.833333333333000000
-          0.000000000000000000
-          74.083333333333330000)
-        Alignment = taLeftJustify
-        AlignToBand = False
-        AutoSize = True
-        AutoStretch = False
-        Color = clWhite
-        DataSet = zqOrdenRepuesto
-        DataField = 'costo'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        Mask = '$#,##0.00'
-        ParentFont = False
-        Transparent = False
-        WordWrap = True
-        FontSize = 8
-      end
       object QRDBText8: TQRDBText
         Left = 8
         Top = 0
@@ -829,6 +795,38 @@ inherited frmRepOrdenTrabajo: TfrmRepOrdenTrabajo
         Color = clWhite
         DataSet = zqOrdenRepuesto
         DataField = 'fecha'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+        Transparent = False
+        WordWrap = True
+        FontSize = 8
+      end
+      object QRDBText7: TQRDBText
+        Left = 520
+        Top = 0
+        Width = 28
+        Height = 17
+        Frame.Color = clBlack
+        Frame.DrawTop = False
+        Frame.DrawBottom = False
+        Frame.DrawLeft = False
+        Frame.DrawRight = False
+        Size.Values = (
+          44.979166666666670000
+          1375.833333333333000000
+          0.000000000000000000
+          74.083333333333330000)
+        Alignment = taLeftJustify
+        AlignToBand = False
+        AutoSize = True
+        AutoStretch = False
+        Color = clWhite
+        DataSet = zqOrdenRepuesto
+        DataField = 'costo'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -1230,9 +1228,9 @@ inherited frmRepOrdenTrabajo: TfrmRepOrdenTrabajo
       FieldName = 'descripcion'
       Size = 100
     end
-    object zqOrdenRepuestocosto: TBCDField
+    object zqOrdenRepuestocosto: TFMTBCDField
       FieldName = 'costo'
-      Precision = 22
+      Precision = 18
       Size = 2
     end
   end
@@ -1268,7 +1266,7 @@ inherited frmRepOrdenTrabajo: TfrmRepOrdenTrabajo
       '    (SELECT SUM(odr.costo) '
       '     FROM ordenes_repuestos odr '
       '     WHERE odr.orden_id = :id_orden), '
-      '    CAST(0 AS money)'
+      '    CAST(0 AS NUMERIC)'
       ') as costo_total;')
     Params = <
       item
@@ -1281,12 +1279,11 @@ inherited frmRepOrdenTrabajo: TfrmRepOrdenTrabajo
       item
         Name = 'id_orden'
       end>
-    object zroqCostoTotalcosto_total: TBCDField
+    object zroqCostoTotalcosto_total: TFMTBCDField
       FieldName = 'costo_total'
       ReadOnly = True
       DisplayFormat = '$#,##0.00'
-      Precision = 22
-      Size = 2
+      Size = 0
     end
   end
 end

@@ -539,36 +539,12 @@ object dmOrdenesTrabajos: TdmOrdenesTrabajos
     Connection = dmConexion.zConnection
     SQL.Strings = (
       'SELECT COALESCE('#10
-      ''
-      #10
-      ''
-      #10
-      ''
       '    (SELECT SUM(odr.costo) '#10
-      ''
-      #10
-      ''
-      #10
-      ''
       '     FROM ordenes_repuestos odr '#10
-      ''
-      #10
-      ''
-      #10
-      ''
       '     WHERE odr.orden_id = :id_orden), '#10
-      ''
-      #10
-      ''
-      #10
-      ''
       '    CAST(0 AS NUMERIC)'#10
-      ''
-      #10
-      ''
-      #10
-      ''
       ') as costo_total;'#10
+      ''
       '')
     Params = <
       item
